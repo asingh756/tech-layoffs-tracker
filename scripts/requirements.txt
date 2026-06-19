@@ -1,0 +1,6 @@
+# No dependencies — Python standard library only.
+#
+# This refresh pipeline targets Python 3.9+ and intentionally uses nothing beyond the
+# standard library (urllib, json, csv, html.parser, argparse, datetime, os, re, typing).
+# There is nothing to `pip install`. This file exists only to document that fact and to
+# satisfy tools that expect a requirements.txt to be present.

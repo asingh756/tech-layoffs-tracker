@@ -1,0 +1,79 @@
+{
+  "annualTotals": [
+    {
+      "year": 2020,
+      "total": 80998,
+      "companies": 1059,
+      "source": "Layoffs.fyi",
+      "sourceUrl": "https://layoffs.fyi/",
+      "confidence": "estimated",
+      "asOf": "2021-01-01",
+      "note": "COVID-19 onset triggered the first major tech layoff wave."
+    },
+    {
+      "year": 2021,
+      "total": 15823,
+      "companies": null,
+      "source": "Layoffs.fyi",
+      "sourceUrl": "https://layoffs.fyi/",
+      "confidence": "estimated",
+      "asOf": "2022-01-01",
+      "note": "Recovery year and the lowest annual total since tracking began."
+    },
+    {
+      "year": 2022,
+      "total": 165269,
+      "companies": 1172,
+      "source": "Layoffs.fyi",
+      "sourceUrl": "https://layoffs.fyi/",
+      "confidence": "estimated",
+      "asOf": "2023-01-03",
+      "note": "Tech downturn begins; roughly a 10x increase over 2021."
+    },
+    {
+      "year": 2023,
+      "total": 262735,
+      "companies": 1186,
+      "source": "Layoffs.fyi",
+      "sourceUrl": "https://techcrunch.com/2024/05/01/a-comprehensive-archive-of-2023-tech-layoffs/",
+      "confidence": "estimated",
+      "asOf": "2024-01-01",
+      "note": "Peak year on record. Final tallies range from ~262,735 to ~264,220 across snapshots."
+    },
+    {
+      "year": 2024,
+      "total": 152922,
+      "companies": 551,
+      "source": "Layoffs.fyi",
+      "sourceUrl": "https://layoffs.fyi/",
+      "confidence": "confirmed",
+      "asOf": "2025-01-01",
+      "note": "Final full-year total: 152,922 employees across 551 companies."
+    },
+    {
+      "year": 2025,
+      "total": 123941,
+      "companies": 269,
+      "source": "Layoffs.fyi",
+      "sourceUrl": "https://techcrunch.com/2025/12/22/tech-layoffs-2025-list/",
+      "confidence": "confirmed",
+      "asOf": "2026-01-01",
+      "note": "Final full-year total per Layoffs.fyi. Crunchbase reports ~127,000 for US-based tech companies."
+    },
+    {
+      "year": 2026,
+      "total": 185894,
+      "companies": 267,
+      "source": "Aggregated trackers",
+      "sourceUrl": "https://www.computerworld.com/article/3816579/tech-layoffs-this-year-a-timeline.html",
+      "confidence": "estimated",
+      "asOf": "2026-06-17",
+      "note": "Year-to-date estimate. Trackers differ by methodology; see the per-source breakdown. AI/automation is cited as a factor in roughly 53% of 2026 cuts.",
+      "estimates": [
+        { "source": "Layoffs.fyi", "total": 100000, "asOf": "2026-05", "sourceUrl": "https://layoffs.fyi/" },
+        { "source": "TrueUp", "total": 153608, "asOf": "2026-04", "sourceUrl": "https://www.trueup.io/layoffs" },
+        { "source": "Aggregated trackers", "total": 185894, "asOf": "2026-06-17", "sourceUrl": "https://www.informationweek.com/it-staffing-careers/2026-tech-company-layoffs" }
+      ]
+    }
+  ]
+}

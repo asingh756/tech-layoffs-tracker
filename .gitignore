@@ -1,0 +1,15 @@
+# OS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Editor / tooling (machine-specific; contains absolute local paths)
+.claude/
+*.log
+
+# Local data backups
+data/*.bak

@@ -1,0 +1,17 @@
+{
+  "lastUpdated": "2026-06-18",
+  "lastRefresh": "2026-06-18",
+  "generatedBy": "seed",
+  "primarySource": "Layoffs.fyi",
+  "currentYear": 2026,
+  "sourceCounts": {},
+  "methodology": "Annual totals are authoritative aggregate figures published by Layoffs.fyi and cross-checked against TrueUp, Crunchbase, and RationalFX. Individual events are a curated set of the largest and most widely-reported layoffs, each carrying its own source and confidence label. Because no public tracker enumerates every event, the sum of listed events is intentionally smaller than the annual total — see the coverage indicator on the dashboard.",
+  "coverageNote": "Detailed breakdowns (monthly chart, company leaderboard, company history) reflect tracked notable events, not every layoff. The big headline number for each year is the authoritative annual total from the source above.",
+  "honesty": [
+    "Numbers are never invented. When a source does not provide a count, it is shown as Unknown.",
+    "Estimates and ranged figures are labeled distinctly from confirmed figures.",
+    "Every data point stores its source and the date it was imported or refreshed.",
+    "Figures vary by source and methodology — always consult the original source linked on each data point."
+  ],
+  "disclaimer": "This site aggregates public data for informational purposes only and is not affiliated with any of the cited sources."
+}

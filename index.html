@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tech Layoffs Tracker — live count &amp; historical trends</title>
+  <meta name="description" content="A live-style tracker of tech-industry layoffs: current-year count, historical trends, company leaderboards, and a sourced events table. Every figure carries its source and confidence." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230b0f17'/%3E%3Cpath d='M20 70 L42 48 L58 62 L80 30' fill='none' stroke='%23f6c453' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true">
+        <rect width="100" height="100" rx="22" />
+        <path d="M18 72 L42 46 L58 62 L82 28" />
+      </svg>
+      <div class="brand-text">
+        <span class="brand-name">Tech Layoffs Tracker</span>
+        <span class="brand-sub">Sourced &middot; historical &middot; honest</span>
+      </div>
+    </div>
+
+    <nav class="tabs" id="tabs" aria-label="Views">
+      <button class="tab is-active" data-view="dashboard">Dashboard</button>
+      <button class="tab" data-view="company">By Company</button>
+      <button class="tab" data-view="historical">Historical</button>
+      <button class="tab" data-view="events">Events</button>
+    </nav>
+
+    <div class="updated" id="updated-badge" title="When the underlying data was last refreshed">
+      <span class="dot"></span><span id="updated-text">Loading…</span>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- =================== DASHBOARD =================== -->
+    <section id="view-dashboard" class="view is-active" aria-label="Dashboard">
+      <div class="hero">
+        <div class="hero-eyebrow">
+          <span class="live-pill"><span class="dot"></span>Live tracker</span>
+          <span id="hero-asof"></span>
+        </div>
+
+        <div class="year-control" role="group" aria-label="Select year">
+          <button id="year-prev" class="yc-btn" aria-label="Previous year">&#8592;</button>
+          <label class="visually-hidden" for="year-select">Year</label>
+          <select id="year-select" class="year-select"></select>
+          <button id="year-next" class="yc-btn" aria-label="Next year">&#8594;</button>
+        </div>
+
+        <h1 class="headline">Number of tech layoffs in <span id="headline-year" class="hl-year">—</span></h1>
+        <div class="bignum" id="headline-count" aria-live="polite">—</div>
+        <div class="hero-meta" id="headline-meta"></div>
+        <div class="trend-chip-row"><span class="trend-chip" id="headline-trend"></span></div>
+        <p class="summary" id="trend-summary"></p>
+      </div>
+
+      <div class="stat-grid" id="stat-grid"></div>
+
+      <div class="panel-grid">
+        <section class="panel panel-wide">
+          <header class="panel-head">
+            <h2>Tech layoffs over time</h2>
+            <span class="hint">Authoritative annual totals. The selected year is highlighted.</span>
+          </header>
+          <div class="chart-wrap"><canvas id="chart-historical"></canvas></div>
+        </section>
+        <section class="panel">
+          <header class="panel-head">
+            <h2>Monthly &mdash; <span id="monthly-year" class="accent">—</span></h2>
+          </header>
+          <div class="chart-wrap"><canvas id="chart-monthly"></canvas></div>
+          <p class="panel-note" id="monthly-note"></p>
+        </section>
+      </div>
+
+      <div class="panel-grid">
+        <section class="panel">
+          <header class="panel-head">
+            <h2>Company leaderboard &mdash; <span id="leaderboard-year" class="accent">—</span></h2>
+            <span class="hint">By tracked headcount</span>
+          </header>
+          <div id="leaderboard" class="leaderboard"></div>
+        </section>
+        <section class="panel">
+          <header class="panel-head">
+            <h2>Biggest layoff events &mdash; <span id="biggest-year" class="accent">—</span></h2>
+          </header>
+          <div id="biggest-events" class="event-list"></div>
+        </section>
+      </div>
+
+      <p class="coverage-note" id="coverage-note"></p>
+    </section>
+
+    <!-- =================== COMPANY =================== -->
+    <section id="view-company" class="view" aria-label="By company">
+      <div class="view-head">
+        <h1>Search by company</h1>
+        <p class="view-sub">See a company's full layoff history, whether it ran multiple rounds, and every sourced event.</p>
+      </div>
+
+      <div class="company-search">
+        <input id="company-input" class="search-input" list="company-list" type="search"
+               placeholder="Type a company, e.g. Meta, Amazon, Intel…" autocomplete="off" />
+        <datalist id="company-list"></datalist>
+      </div>
+      <div id="company-chips" class="chips"></div>
+
+      <div id="company-profile" class="company-profile"></div>
+
+      <section class="panel" id="company-chart-panel" hidden>
+        <header class="panel-head"><h2>Layoff events over time</h2></header>
+        <div class="chart-wrap"><canvas id="chart-company"></canvas></div>
+      </section>
+
+      <div id="company-events" class="table-wrap"></div>
+    </section>
+
+    <!-- =================== HISTORICAL =================== -->
+    <section id="view-historical" class="view" aria-label="Historical">
+      <div class="view-head">
+        <h1>Historical trends</h1>
+        <p class="view-sub">Layoffs by year, the peak on record, and year-over-year comparisons.</p>
+      </div>
+
+      <section class="panel panel-wide">
+        <header class="panel-head">
+          <h2>Layoffs by year</h2>
+          <span class="hint" id="peak-hint"></span>
+        </header>
+        <div class="chart-wrap chart-tall"><canvas id="chart-years"></canvas></div>
+      </section>
+
+      <section class="panel compare-panel">
+        <header class="panel-head"><h2>Compare two years</h2></header>
+        <div class="compare-controls">
+          <select id="compare-a" class="year-select"></select>
+          <span class="compare-vs">vs</span>
+          <select id="compare-b" class="year-select"></select>
+        </div>
+        <div id="compare-result" class="compare-result"></div>
+      </section>
+
+      <div id="annual-table" class="table-wrap"></div>
+    </section>
+
+    <!-- =================== EVENTS =================== -->
+    <section id="view-events" class="view" aria-label="Events table">
+      <div class="view-head">
+        <h1>Layoff events</h1>
+        <p class="view-sub">Every tracked event with its source and confidence. Filter and sort below.</p>
+      </div>
+
+      <div class="filters">
+        <input id="events-search" class="search-input" type="search" placeholder="Search company or industry…" autocomplete="off" />
+        <select id="events-year" class="year-select" aria-label="Filter by year"></select>
+        <select id="events-confidence" class="year-select" aria-label="Filter by confidence">
+          <option value="">All confidence</option>
+          <option value="confirmed">Confirmed</option>
+          <option value="estimated">Estimated</option>
+          <option value="unknown">Unknown</option>
+        </select>
+        <span id="events-count" class="events-count"></span>
+      </div>
+
+      <div id="events-table" class="table-wrap"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h3>Data sources</h3>
+        <ul id="sources-list" class="sources-list"></ul>
+      </div>
+      <div class="footer-col">
+        <h3>Methodology</h3>
+        <p id="methodology-text" class="footer-note"></p>
+        <p id="coverage-text" class="footer-note"></p>
+      </div>
+      <div class="footer-col">
+        <h3>How we stay honest</h3>
+        <ul id="honesty-list" class="honesty-list"></ul>
+      </div>
+    </div>
+    <p class="disclaimer" id="disclaimer-text"></p>
+  </footer>
+
+  <!-- Vendored Chart.js (self-contained, no runtime CDN dependency) -->
+  <script src="js/vendor/chart.umd.min.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

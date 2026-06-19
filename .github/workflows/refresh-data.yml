@@ -1,0 +1,51 @@
+name: Refresh layoff data
+
+# Refreshes data/events.json and data/meta.json from the source adapters, then commits
+# any changes back to the repository. Runs on a daily schedule and on demand.
+
+on:
+  schedule:
+    # Daily at 12:00 UTC.
+    - cron: "0 12 * * *"
+  workflow_dispatch:
+
+# The job needs to push the regenerated data files back to the repo.
+permissions:
+  contents: write
+
+# Avoid overlapping refreshes (e.g. a manual run during the scheduled one).
+concurrency:
+  group: refresh-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run refresh pipeline
+        # APIFY_TOKEN is optional: if the secret is unset the layoffs_fyi adapter simply
+        # skips. The pipeline exits 0 even when sources are unreachable.
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+        run: python scripts/refresh.py --verbose
+
+      - name: Commit and push changes
+        run: |
+          set -euo pipefail
+          git config user.name "Amrit Singh"
+          git config user.email "amritsinghh756@gmail.com"
+          if [ -z "$(git status --porcelain data/)" ]; then
+            echo "No data changes to commit."
+            exit 0
+          fi
+          git add data/
+          git commit -m "chore: refresh layoff data (automated)"
+          git push

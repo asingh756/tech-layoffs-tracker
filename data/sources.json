@@ -1,0 +1,60 @@
+{
+  "sources": [
+    {
+      "id": "layoffs_fyi",
+      "name": "Layoffs.fyi",
+      "url": "https://layoffs.fyi/",
+      "type": "Aggregator",
+      "credibility": "High",
+      "description": "The de-facto standard tech layoff tracker, maintained by Roger Lee since 2020. Aggregates verified media reports and public filings. Free to use with attribution."
+    },
+    {
+      "id": "trueup",
+      "name": "TrueUp",
+      "url": "https://www.trueup.io/layoffs",
+      "type": "Aggregator",
+      "credibility": "High",
+      "description": "Tech-careers platform with a live layoff tracker that counts both layoff events and people impacted, updated continuously."
+    },
+    {
+      "id": "crunchbase",
+      "name": "Crunchbase News",
+      "url": "https://news.crunchbase.com/startups/tech-layoffs/",
+      "type": "Editorial",
+      "credibility": "High",
+      "description": "Editorial tech-layoffs tracker focused on US-based companies, updated weekly with company-level detail."
+    },
+    {
+      "id": "warn",
+      "name": "WARN Notices",
+      "url": "https://www.dol.gov/agencies/eta/layoffs/warn",
+      "type": "Government filing",
+      "credibility": "Highest",
+      "description": "Official US state filings required under the Worker Adjustment and Retraining Notification (WARN) Act for mass layoffs and plant closings. Authoritative, public, and the basis for the automated refresh pipeline."
+    },
+    {
+      "id": "computerworld",
+      "name": "Computerworld",
+      "url": "https://www.computerworld.com/article/3816579/tech-layoffs-this-year-a-timeline.html",
+      "type": "Media",
+      "credibility": "High",
+      "description": "Maintains a running 2026 tech-layoff timeline citing Layoffs.fyi, RationalFX, and company filings."
+    },
+    {
+      "id": "techcrunch",
+      "name": "TechCrunch",
+      "url": "https://techcrunch.com/2025/12/22/tech-layoffs-2025-list/",
+      "type": "Media",
+      "credibility": "High",
+      "description": "Publishes comprehensive annual archives of tech layoffs with per-company headcounts and dates."
+    },
+    {
+      "id": "techco",
+      "name": "Tech.co",
+      "url": "https://tech.co/news/tech-companies-layoffs",
+      "type": "Media",
+      "credibility": "Medium",
+      "description": "Running tracker of tech-company layoffs spanning 2022 to present, compiled from company announcements and media reports."
+    }
+  ]
+}
