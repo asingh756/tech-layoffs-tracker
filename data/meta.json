@@ -1,10 +1,16 @@
 {
-  "lastUpdated": "2026-06-18",
-  "lastRefresh": "2026-06-18",
-  "generatedBy": "seed",
+  "lastUpdated": "2026-06-19",
+  "lastRefresh": "2026-06-19",
+  "generatedBy": "refresh",
   "primarySource": "Layoffs.fyi",
   "currentYear": 2026,
-  "sourceCounts": {},
+  "sourceCounts": {
+    "Computerworld": 5,
+    "Crunchbase News": 3,
+    "Tech.co": 24,
+    "TechCrunch": 24,
+    "Texas WARN Notice": 60
+  },
   "methodology": "Annual totals are authoritative aggregate figures published by Layoffs.fyi and cross-checked against TrueUp, Crunchbase, and RationalFX. Individual events are a curated set of the largest and most widely-reported layoffs, each carrying its own source and confidence label. Because no public tracker enumerates every event, the sum of listed events is intentionally smaller than the annual total — see the coverage indicator on the dashboard.",
   "coverageNote": "Detailed breakdowns (monthly chart, company leaderboard, company history) reflect tracked notable events, not every layoff. The big headline number for each year is the authoritative annual total from the source above.",
   "honesty": [
